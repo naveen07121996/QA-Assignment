@@ -10,8 +10,7 @@ import io.cucumber.junit.CucumberOptions;
 		features = "src/test/resources/Features",
 		dryRun = false,
 		monochrome = true,
-		tags = "@TimeStoreAddtoCart",
-		plugin = {"pretty","html:target/test-reports1.html"}
+		plugin = {"pretty","html:target/test-report.html"}
 		)
 public class RunnerClass {
 

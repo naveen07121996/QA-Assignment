@@ -12,7 +12,7 @@ public class TestSteps {
 	ConfigReader configReader = new ConfigReader();
 	TestPage pages;
 
-	// Search and date range steps
+	// Common step
 	@Given("User is on the home page")
 	public void user_is_on_the_home_page() {
 		driver.get(configReader.getProperty("app.url"));
@@ -20,6 +20,7 @@ public class TestSteps {
 		pages.validateHomePage();
 	}
 
+	// Search and date range steps
 	@When("User clicks the search bar and searches for {string} news")
 	public void user_clicks_the_search_bar_and_searches_for_news(String searchCrimes) {
 		pages.search(searchCrimes);
