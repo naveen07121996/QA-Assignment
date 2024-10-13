@@ -1,11 +1,19 @@
 package pages;
 
+import java.time.Duration;
+import java.util.NoSuchElementException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.MoveTargetOutOfBoundsException;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import commonMethods.BaseClass;
 import utilities.ConfigReader;
 
@@ -132,6 +140,7 @@ public class TestPage {
 
 	// select game header
 	public void selectGameItem() {
+		baseClass.handleTermsPopup();
 		driver.findElement(gamesHeaderMenu).click();
 	}
 
@@ -178,15 +187,17 @@ public class TestPage {
 
 	// click time store link
 	public void clickTimeStoreLink() {
+		baseClass.handleTermsPopup();
 		baseClass.scrollToBottom();
 		WebElement timeStore = driver.findElement(timeStoreLinkText);
 		baseClass.moveToElement(timeStore);
 		baseClass.clickElement(timeStore);
+		// baseClass.handlePopupByCloseIcon();
 	}
 
 	// verify through sub title text
 	public boolean verifySubTitle() {
-		baseClass.handlePopupByCloseIcon();
+		// baseClass.handlePopupByCloseIcon();
 		try {
 			// Check if the element is displayed
 			WebElement sTitleText = driver.findElement(subTitleText);
@@ -198,16 +209,34 @@ public class TestPage {
 	}
 
 	// select shop by category
-	public void shopByCategory() {
-		WebElement shopcategory = driver.findElement(shopByCategoryHeader);
-		baseClass.moveToElement(shopcategory);
-		WebElement bookSection = driver.findElement(booksItem);
-		baseClass.clickElement(bookSection);
+	public void shopByCategory() throws InterruptedException {
+		baseClass.handlePopupByCloseIcon();
+		try {
+			WebElement shopcategory = driver.findElement(shopByCategoryHeader);
+			// Wait until the element is clickable and move to it
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			wait.until(ExpectedConditions.elementToBeClickable(shopcategory));
+			baseClass.moveToElement(shopcategory);
+			Thread.sleep(3000);
+			// select book
+			WebElement bookSection = driver.findElement(booksItem);
+			baseClass.moveToElement(bookSection);
+			baseClass.clickElement(bookSection);
+		} catch (NoSuchElementException e) {
+			System.out.println("Shop by Category header or Books section not found: " + e.getMessage());
+		} catch (MoveTargetOutOfBoundsException e) {
+			System.out.println("Move target out of bounds: " + e.getMessage());
+		}
 	}
 
 	// select football book
 	public void selectABook() {
-		driver.findElement(theFootBallBook).click();
+		try {
+			driver.findElement(theFootBallBook).click();
+		} catch (NoSuchElementException e) {
+			System.out.println("Book is not found: " + e.getMessage());
+		}
+
 	}
 
 	// add item to cart

@@ -89,7 +89,7 @@ public class TestSteps {
 	}
 
 	@When("User Chooses a book from the shop by category header")
-	public void user_chooses_a_book_from_the_shop_by_category_header() {
+	public void user_chooses_a_book_from_the_shop_by_category_header() throws InterruptedException {
 		pages.shopByCategory();
 	}
 
