@@ -37,7 +37,7 @@ Prerequisites:
 
 1. Clone the repository :
 
-        git clone  https://github.com/naveen07121996/QA-Assignment.git
+        git clone  https://github.com/naveen07121996/QA-Assignment/tree/master
     
  2. Install Maven dependencies :   
 
