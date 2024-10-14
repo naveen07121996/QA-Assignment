@@ -2,6 +2,23 @@
 ## NewYork times International Website : Automation Testing Framework
 The New York Times International website provides global news, insights, and analysis on a wide range of topics including politics, business, and culture. It delivers high-quality journalism and multimedia content, offering an engaging experience for readers worldwide.
 
+## Technologies Used
+* Framework Type - Cucumber & Data driven Framework
+* Design pattern - Page Object Model Design pattern, external object repository and inbuilt custom annotations.
+* Selenium WebDriver - For Browser Automation
+* Cucumber - For organizing and running test cases.
+* Maven - For dependency management, Project life cycle and build annotation.
+* Java - Primary Programming Language.
+
+## Project Structure
+* Eclipse - Eclipse configuration files
+* Reports - target folder containing report files
+* src - Source code for test scripts, this package consists of below given structure.
+* src/main/java - Consists of all packages like Common methods, page objects, utility files.
+* src/test/java - Consists of packages like runner, step defintions and Hooks.
+* src/test/resources - Consists of feature files,properties file and test data.
+* pom.xml - Maven project file for managing dependencies
+
 
 ## Features
 
@@ -74,23 +91,6 @@ To execute the tests, you can use the following commands:
    If you'd like to run a specific tag from the feature file, the command would be: 
 
      mvn -Dcucumber.options="--tags @SearchData" test
-
-## Technologies Used
-* Framework Type - Cucumber & Data driven Framework
-* Design pattern - Page Object Model Design pattern, external object repository and inbuilt custom annotations.
-* Selenium WebDriver - For Browser Automation
-* Cucumber - For organizing and running test cases.
-* Maven - For dependency management, Project life cycle and build annotation.
-* Java - Primary Programming Language.
-
-## Project Structure
-* Eclipse - Eclipse configuration files
-* Reports - target folder containing report files
-* src - Source code for test scripts, this package consists of below given structure.
-* src/main/java - Consists of all packages like Common methods, page objects, utility files.
-* src/test/java - Consists of packages like runner, step defintions and Hooks.
-* src/test/resources - Consists of feature files,properties file and test data.
-* pom.xml - Maven project file for managing dependencies
 
 ## Configuration
 
