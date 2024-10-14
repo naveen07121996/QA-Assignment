@@ -88,9 +88,8 @@ To execute the tests, you can use the following commands:
 * Reports - target folder containing report files
 * src - Source code for test scripts, this package consists of below given structure.
 * src/main/java - Consists of all packages like Common methods, page objects, utility files.
-* src/main/resources - Config properties file.
 * src/test/java - Consists of packages like runner, step defintions and Hooks.
-* src/test/resources - Consists of feature files and test data.
+* src/test/resources - Consists of feature files,properties file and test data.
 * pom.xml - Maven project file for managing dependencies
 
 ## Configuration
