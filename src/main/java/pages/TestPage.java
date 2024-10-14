@@ -157,10 +157,6 @@ public class TestPage {
 		handlePopup();
 		baseClass.scrollToBottom();
 		baseClass.click(timeStoreLinkText);
-//		WebElement timeStore = driver.findElement(timeStoreLinkText);
-//		baseClass.moveToElement(timeStore);
-//		baseClass.clickElement(timeStore);
-//		// baseClass.handlePopupByCloseIcon();
 	}
 
 	// verify through sub title text
@@ -203,8 +199,6 @@ public class TestPage {
 	public void addItemToCart() {
 		baseClass.click(addToCartBtn);
 		baseClass.click(cartIconBtn);
-		// driver.findElement(addToCartBtn).click();
-		// driver.findElement(cartIconBtn).click();
 	}
 
 }
