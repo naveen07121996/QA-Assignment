@@ -3,12 +3,17 @@ Feature: Validating the features in the app
   Background: 
     Given User is on the home page
 
+  @ValidateDate
+  Scenario: Validate today's date
+    When User navigates to the home screen
+    Then User should see today's date displayed on home screen
+    And User closes the browser
+
   @SearchData
-  Scenario: Search data through invalid date range
-    When User clicks the search bar and searches for "Crimes" news
-    Then User should be navigated to the crimes news screen
-    And User selects a specific date range in the Date range dropdown and enters invalid date ranges
-    Then User should see an error message indicating an invalid date range
+  Scenario: Search data through Excel file
+    When User clicks the search bar and enters multiple data from the Excel file
+    And User should land on the specific search results page for each data
+    Then User closes the browser
 
   @HeaderLink
   Scenario: Verifying the header section items

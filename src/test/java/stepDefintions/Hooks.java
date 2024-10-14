@@ -15,7 +15,8 @@ import java.time.Duration;
 public class Hooks {
 
 	public static WebDriver driver;
-	ConfigReader config = new ConfigReader(); // Load the config file
+	// Load the config file
+	ConfigReader config = new ConfigReader();
 
 	@Before
 	public void setUp() {
@@ -25,11 +26,6 @@ public class Hooks {
 		switch (browser.toLowerCase()) {
 		case "chrome":
 			WebDriverManager.chromedriver().setup();
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("--disable-web-security");
-			options.addArguments("--disable-notifications");
-			options.addArguments("--disable-popup-blocking");
-			options.addArguments("--disable-websockets");
 			driver = new ChromeDriver();
 			break;
 		case "firefox":

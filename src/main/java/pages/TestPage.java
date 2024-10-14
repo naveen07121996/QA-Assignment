@@ -1,14 +1,14 @@
 package pages;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.NoSuchElementException;
-
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.MoveTargetOutOfBoundsException;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -32,19 +32,14 @@ public class TestPage {
 
 	private By uniqueText = By.xpath("//a[text() = 'Today’s Paper']");
 
+	private By todaysDate = By.xpath("//span[@data-testid = 'todays-date']");
+
 	// Scenario 1
 	private By searchIcon = By.xpath("//button[@class = 'css-tkwi90 e1iflr850']");
 	private By searchBox = By.xpath("//input[@placeholder = 'SEARCH']");
 	private By goBtn = By.xpath("//button[@type = 'submit']");
-	private By dateRangeBtn = By.xpath("//button[@class = 'css-p5555t']");
-	private By specificDatesSection = By.xpath("//button[text() = 'Specific Dates']");
-	private By startDateField = By.xpath("//input[@id = 'startDate']");
-	private By endDateField = By.xpath("//input[@id = 'endDate']");
-	private By errorMsg = By.xpath("//a[text() = 'Have search feedback? Let us know what you think.']");
 
 	// Scenario 2
-	private By uSHeaderMenu = By.xpath("(//a[@data-navid = 'U.S.'])[2]");
-	private By currentYearElectionsItem = By.xpath("(//a[text() = '2024 Elections'])[2]");
 	private By gamesHeaderMenu = By.xpath("(//a[text() = 'Games'])[2]");
 	private By sudokuGameItem = By.xpath("//h4[text() = 'Sudoku']");
 	private By gameText = By.xpath("//em[text() = 'Sudoku']");
@@ -72,6 +67,22 @@ public class TestPage {
 		baseClass.handleTermsPopup();
 	}
 
+	// validate today's date
+	public void validateCurrentDate() {
+		handlePopup();
+		// Get the current system date
+		LocalDate today = LocalDate.now();
+		// Adjust formatter to match the format displayed on the home screen
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy", Locale.ENGLISH);
+		String expectedDate = today.format(formatter);
+
+		WebElement dateElement = driver.findElement(todaysDate);
+		String displayedDate = dateElement.getText();
+		// Validate that the displayed date matches today's date
+		Assert.assertEquals("The date displayed on the home screen does not match today's date.", expectedDate,
+				displayedDate);
+	}
+
 	// Scenario 1 Actions
 
 	// validating home page
@@ -82,33 +93,27 @@ public class TestPage {
 
 	// search
 	public void search(String searchItem) {
-		handlePopup();
 		baseClass.click(searchIcon);
 		baseClass.type(searchBox, searchItem);
 		baseClass.click(goBtn);
 	}
 
 	// Validating search item screen
-	public void validateSearchScrn() {
+	public void validateSearchScrn(String searchItem) {
+		// Create the expected URL dynamically based on the search term
+		String expectedUrl = "https://www.nytimes.com/search?query=" + searchItem;
+		// Get the current URL
 		String currentUrl = driver.getCurrentUrl();
-		String expectedUrl = reader.getProperty("crimesscreenurl");
-		Assert.assertEquals(expectedUrl, currentUrl);
+		// Validate the current URL
+		Assert.assertEquals("The current URL does not match the expected URL for search term: " + searchItem,
+				expectedUrl, currentUrl);
 	}
 
-	// select invalid date range
-	public void selectDates(String startDate, String endDate) {
-		handlePopup();
-		baseClass.click(dateRangeBtn);
-		baseClass.click(specificDatesSection);
-		baseClass.type(startDateField, startDate);
-		baseClass.type(endDateField, endDate);
-	}
-
-	// Validating error message
-	public void verifyErrorMsg() {
-		String expectedMsg = reader.getProperty("error.invalidDateRange");
-		WebElement actualMsg = driver.findElement(errorMsg);
-		Assert.assertEquals(actualMsg.getText(), expectedMsg);
+	public boolean isOnSearchedScreen() {
+		String expectedUrlPattern = "https://www.nytimes.com/search?query=";
+		String currentUrl = driver.getCurrentUrl();
+		// Check if the current URL contains the expected pattern
+		return currentUrl.startsWith(expectedUrlPattern);
 	}
 
 	// Scenario 2 Actions

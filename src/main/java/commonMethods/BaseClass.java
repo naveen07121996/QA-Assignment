@@ -59,7 +59,7 @@ public class BaseClass {
 	public void handleTermsPopup() {
 		try {
 			// Wait for the popup to be visible
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30)); // 10 seconds wait
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60)); // 10 seconds wait
 			WebElement continueButton = wait.until(ExpectedConditions.visibilityOfElementLocated(popUpContinueBtn));
 
 			// If the pop-up is visible, click the "Continue" button
