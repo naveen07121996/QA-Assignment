@@ -63,7 +63,16 @@ To execute the tests, you can use the following commands:
 
      mvn -Dcucumber.options="--tags @SearchData" test
 
+## Technologies Used
+Framework Type - Cucumber & Data driven Framework
+Design pattern - Page Object Model Design pattern, external object repository and inbuilt custom annotations.
+Selenium WebDriver - For Browser Automation
+Cucumber - For organizing and running test cases.
+Maven - For dependency management, Project life cycle and build annotation.
+Java - Primary Programming Language.
 
+## Project Structure
+Eclipse - 
 
 ## Configuration
 
@@ -86,26 +95,6 @@ After running the tests, a Cucumber report will be generated in the target/cucum
 
 * To view the report, open the following file in your browser:
 
-      target/test-reports/test-reports.html
-## Screenshots
+          target/test-reports.html
 
-![Newyorktimes1](https://github.com/user-attachments/assets/553385db-4317-4d63-8af4-ed2d2b736021)
-
-![Newyorktimes2](https://github.com/user-attachments/assets/e3ebfde5-25e6-464c-a3e1-01e730c1179f)
-
-![Newyorktimes3](https://github.com/user-attachments/assets/9f607818-5df7-4794-bb08-a25d4dde2f48)
-
-![Newyorktimes4](https://github.com/user-attachments/assets/15b7ae83-1be4-459f-9b76-7a275f4203d0)
-
-![Newyorktimes5](https://github.com/user-attachments/assets/930e8aa1-3d7b-4bf5-8de2-ea942d4ee752)
-
-![Newyorktimes6](https://github.com/user-attachments/assets/4a16db0e-ef14-4d7a-85e6-bd3b45ed176c)
-
-![Newyorktimes7](https://github.com/user-attachments/assets/c0ef46d6-2784-4a15-8cb4-82a0ede7b338)
-
-![Newyorktimes8](https://github.com/user-attachments/assets/2c99cc3f-b6f4-46e9-b4d7-fabfed65dda0)
-
-![Newyorktimes9](https://github.com/user-attachments/assets/c795d85a-a4eb-4114-8826-cc1c502c5af2)
-
-![Newyorktimes10](https://github.com/user-attachments/assets/27505313-9e15-4bfd-84a1-156e59fcc449)
 
