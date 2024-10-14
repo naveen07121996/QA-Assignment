@@ -22,12 +22,14 @@ The New York Times International website provides global news, insights, and ana
 
 ## Features
 
-* Search - Validate the search bar's operation, including handling of date range selections and appropriate responses for invalid input.
+* Search - Validate the search bar's functionality by ensuring the system correctly handles multiple inputs and directs the user to the appropriate search results page for each query. Also, verify that the system gracefully manages errors or invalid input, providing appropriate feedback to the user.
 * Header Navigation - Ensure smooth navigation across header sections, confirming that each link leads to the correct corresponding page.
 * Footer Links - Verify the accuracy of footer links, ensuring they direct users to the intended sections.
 * Time Store-Add to Cart -  Test the user flow in the Time Store, covering product selection, category browsing, and adding items to the shopping cart.
+ 
 ## Test Case Design
   The test cases are designed using Cucumber and are structured as feature files written in Gherkin syntax. Each feature file contains multiple scenarios that represent individual test cases. The framework follows the Page Object Model (POM) design pattern, which separates test logic from web element locators and page-specific methods. This approach enhances maintainability and scalability of the test suite.
+  
 ## Key Components
 * Page Objects - Contains classes for each page of the NewYork times International application. Each page object class includes locators and actions that are specific to that page.
 
