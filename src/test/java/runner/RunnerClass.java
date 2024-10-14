@@ -9,6 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 		glue = "stepDefintions",
 		features = "src/test/resources/Features",
 		dryRun = false,
+		tags = "@SearchData",
 		monochrome = true,
 		plugin = {"pretty","html:target/test-report.html"}
 		)

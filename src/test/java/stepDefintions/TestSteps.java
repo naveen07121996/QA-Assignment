@@ -33,7 +33,7 @@ public class TestSteps {
 
 	@Then("User selects a specific date range in the Date range dropdown and enters invalid date ranges")
 	public void user_selects_a_specific_date_range_in_the_date_range_dropdown_and_enters_invalid_date_ranges() {
-		pages.selectDates();
+		pages.selectDates("11/11/2024", "12/11/2024");
 	}
 
 	@Then("User should see an error message indicating an invalid date range")

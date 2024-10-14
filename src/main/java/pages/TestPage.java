@@ -68,27 +68,24 @@ public class TestPage {
 		driver.close();
 	}
 
+	public void handlePopup() {
+		baseClass.handleTermsPopup();
+	}
+
 	// Scenario 1 Actions
 
 	// validating home page
 	public boolean validateHomePage() {
-		try {
-			// Check if the element is displayed
-			WebElement homePageText = driver.findElement(uniqueText);
-			return homePageText.isDisplayed();
-		} catch (Exception e) {
-			// Return false if element is not found or not displayed
-			return false;
-		}
+		return baseClass.isElementDisplayed(uniqueText);
 
 	}
 
 	// search
 	public void search(String searchItem) {
-		baseClass.handleTermsPopup();
-		driver.findElement(searchIcon).click();
-		driver.findElement(searchBox).sendKeys(searchItem);
-		driver.findElement(goBtn).click();
+		handlePopup();
+		baseClass.click(searchIcon);
+		baseClass.type(searchBox, searchItem);
+		baseClass.click(goBtn);
 	}
 
 	// Validating search item screen
@@ -99,24 +96,12 @@ public class TestPage {
 	}
 
 	// select invalid date range
-	public void selectDates() {
-		baseClass.handleTermsPopup();
-		String startDate = "10/14/2024";
-		String endDate = "10/15/2024";
-
-		driver.findElement(dateRangeBtn).click();
-		WebElement specificDate = driver.findElement(specificDatesSection);
-		baseClass.moveToElement(specificDate);
-		baseClass.clickElement(specificDate);
-
-		WebElement startDates = driver.findElement(startDateField);
-		startDates.clear();
-		startDates.sendKeys(startDate);
-
-		WebElement endDates = driver.findElement(endDateField);
-		startDates.clear();
-		endDates.sendKeys(endDate);
-		endDates.sendKeys(Keys.ENTER);
+	public void selectDates(String startDate, String endDate) {
+		handlePopup();
+		baseClass.click(dateRangeBtn);
+		baseClass.click(specificDatesSection);
+		baseClass.type(startDateField, startDate);
+		baseClass.type(endDateField, endDate);
 	}
 
 	// Validating error message
@@ -129,13 +114,9 @@ public class TestPage {
 	// Scenario 2 Actions
 
 	// select US header menu
-	public void selectUSItem() {
-		WebElement uSHeader = driver.findElement(uSHeaderMenu);
-		baseClass.moveToElement(uSHeader);
-
-		WebElement elections = driver.findElement(currentYearElectionsItem);
-		baseClass.moveToElement(elections);
-		baseClass.clickElement(elections);
+	public void selectUSItem(By uSHeaderMenu, By currentYearElectionsItem) {
+		baseClass.moveToElement(driver.findElement(uSHeaderMenu));
+		baseClass.clickElement(driver.findElement(currentYearElectionsItem));
 	}
 
 	// select game header
@@ -151,14 +132,7 @@ public class TestPage {
 
 	// verify the screen title
 	public boolean verifyGameText() {
-		try {
-			// Check if the element is displayed
-			WebElement gamePageText = driver.findElement(gameText);
-			return gamePageText.isDisplayed();
-		} catch (Exception e) {
-			// Return false if element is not found or not displayed
-			return false;
-		}
+		return baseClass.isElementDisplayed(gameText);
 	}
 
 	// Scenario 3 Actions
@@ -173,39 +147,25 @@ public class TestPage {
 
 	// verify correct screen of t brand
 	public boolean verifyTBrandScreen() {
-		try {
-			// Check if the element is displayed
-			WebElement tBrandText = driver.findElement(inspiredBrandText);
-			return tBrandText.isDisplayed();
-		} catch (Exception e) {
-			// Return false if element is not found or not displayed
-			return false;
-		}
+		return baseClass.isElementDisplayed(inspiredBrandText);
 	}
 
 	// Scenario 4 Actions
 
 	// click time store link
 	public void clickTimeStoreLink() {
-		baseClass.handleTermsPopup();
+		handlePopup();
 		baseClass.scrollToBottom();
-		WebElement timeStore = driver.findElement(timeStoreLinkText);
-		baseClass.moveToElement(timeStore);
-		baseClass.clickElement(timeStore);
-		// baseClass.handlePopupByCloseIcon();
+		baseClass.click(timeStoreLinkText);
+//		WebElement timeStore = driver.findElement(timeStoreLinkText);
+//		baseClass.moveToElement(timeStore);
+//		baseClass.clickElement(timeStore);
+//		// baseClass.handlePopupByCloseIcon();
 	}
 
 	// verify through sub title text
 	public boolean verifySubTitle() {
-		// baseClass.handlePopupByCloseIcon();
-		try {
-			// Check if the element is displayed
-			WebElement sTitleText = driver.findElement(subTitleText);
-			return sTitleText.isDisplayed();
-		} catch (Exception e) {
-			// Return false if element is not found or not displayed
-			return false;
-		}
+		return baseClass.isElementDisplayed(subTitleText);
 	}
 
 	// select shop by category
@@ -241,8 +201,10 @@ public class TestPage {
 
 	// add item to cart
 	public void addItemToCart() {
-		driver.findElement(addToCartBtn).click();
-		driver.findElement(cartIconBtn).click();
+		baseClass.click(addToCartBtn);
+		baseClass.click(cartIconBtn);
+		// driver.findElement(addToCartBtn).click();
+		// driver.findElement(cartIconBtn).click();
 	}
 
 }

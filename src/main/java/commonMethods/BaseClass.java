@@ -24,6 +24,25 @@ public class BaseClass {
 		this.actions = new Actions(driver);
 	}
 
+	// Common utility methods to reuse
+	public void click(By locator) {
+		driver.findElement(locator).click();
+	}
+	
+	public void type(By locator, String text) {
+		WebElement element = driver.findElement(locator);
+		element.clear();
+		element.sendKeys(text);
+	}
+	
+	public boolean isElementDisplayed(By locator) {
+		try {
+			return driver.findElement(locator).isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 	// Actions
 
 	// move to element
