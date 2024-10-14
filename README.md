@@ -44,6 +44,11 @@ Prerequisites:
           mvn clean install
 ## Running Tests
 
+* Open the project in eclipse or intellij idea
+* Execute the tests using feature files
+* Right click on runner class
+* Select Run Junit tests
+
 To execute the tests, you can use the following commands:
 
 ## Run All tests
@@ -58,21 +63,35 @@ To execute the tests, you can use the following commands:
 
      mvn -Dcucumber.options="src/test/resources/Features/TestFeature.feature" test
 
+## Running tests on different browsers
+* Change the browser type in config.properties file for running on different browsers.
+* Chrome(currently set)
+* Edge
+* Firefox
+* Safari
+
 ## Run specific scenario
    If you'd like to run a specific tag from the feature file, the command would be: 
 
      mvn -Dcucumber.options="--tags @SearchData" test
 
 ## Technologies Used
-Framework Type - Cucumber & Data driven Framework
-Design pattern - Page Object Model Design pattern, external object repository and inbuilt custom annotations.
-Selenium WebDriver - For Browser Automation
-Cucumber - For organizing and running test cases.
-Maven - For dependency management, Project life cycle and build annotation.
-Java - Primary Programming Language.
+* Framework Type - Cucumber & Data driven Framework
+* Design pattern - Page Object Model Design pattern, external object repository and inbuilt custom annotations.
+* Selenium WebDriver - For Browser Automation
+* Cucumber - For organizing and running test cases.
+* Maven - For dependency management, Project life cycle and build annotation.
+* Java - Primary Programming Language.
 
 ## Project Structure
-Eclipse - 
+* Eclipse - Eclipse configuration files
+* Reports - target folder containing report files
+* src - Source code for test scripts, this package consists of below given structure.
+* src/main/java - Consists of all packages like Common methods, page objects, utility files.
+* src/main/resources - Config properties file.
+* src/test/java - Consists of packages like runner, step defintions and Hooks.
+* src/test/resources - Consists of feature files and test data.
+* pom.xml - Maven project file for managing dependencies
 
 ## Configuration
 
