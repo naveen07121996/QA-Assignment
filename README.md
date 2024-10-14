@@ -86,7 +86,7 @@ After running the tests, a Cucumber report will be generated in the target/cucum
 
 * To view the report, open the following file in your browser:
 
-  target/test-reports.html
+          target/test-reports.html
 ## Screenshots
 
 ![Newyorktimes1](https://github.com/user-attachments/assets/553385db-4317-4d63-8af4-ed2d2b736021)
