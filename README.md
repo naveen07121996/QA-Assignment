@@ -2,15 +2,34 @@
 ## NewYork times International Website : Automation Testing Framework
 The New York Times International website provides global news, insights, and analysis on a wide range of topics including politics, business, and culture. It delivers high-quality journalism and multimedia content, offering an engaging experience for readers worldwide.
 
+## Technologies Used
+* Framework Type - Cucumber & Data driven Framework
+* Design pattern - Page Object Model Design pattern, external object repository and inbuilt custom annotations.
+* Selenium WebDriver - For Browser Automation
+* Cucumber - For organizing and running test cases.
+* Maven - For dependency management, Project life cycle and build annotation.
+* Java - Primary Programming Language.
+
+## Project Structure
+* Eclipse - Eclipse configuration files
+* Reports - target folder containing report files
+* src - Source code for test scripts, this package consists of below given structure.
+* src/main/java - Consists of all packages like Common methods, page objects, utility files.
+* src/test/java - Consists of packages like runner, step defintions and Hooks.
+* src/test/resources - Consists of feature files,properties file and test data.
+* pom.xml - Maven project file for managing dependencies
+
 
 ## Features
 
-* Search - Validate the search bar's operation, including handling of date range selections and appropriate responses for invalid input.
+* Search - Validate the search bar's functionality by ensuring the system correctly handles multiple inputs and directs the user to the appropriate search results page for each query. Also, verify that the system gracefully manages errors or invalid input, providing appropriate feedback to the user.
 * Header Navigation - Ensure smooth navigation across header sections, confirming that each link leads to the correct corresponding page.
 * Footer Links - Verify the accuracy of footer links, ensuring they direct users to the intended sections.
 * Time Store-Add to Cart -  Test the user flow in the Time Store, covering product selection, category browsing, and adding items to the shopping cart.
+ 
 ## Test Case Design
   The test cases are designed using Cucumber and are structured as feature files written in Gherkin syntax. Each feature file contains multiple scenarios that represent individual test cases. The framework follows the Page Object Model (POM) design pattern, which separates test logic from web element locators and page-specific methods. This approach enhances maintainability and scalability of the test suite.
+  
 ## Key Components
 * Page Objects - Contains classes for each page of the NewYork times International application. Each page object class includes locators and actions that are specific to that page.
 
@@ -44,6 +63,11 @@ Prerequisites:
           mvn clean install
 ## Running Tests
 
+* Open the project in eclipse or intellij idea
+* Execute the tests using feature files
+* Right click on runner class
+* Select Run Junit tests
+
 To execute the tests, you can use the following commands:
 
 ## Run All tests
@@ -58,21 +82,17 @@ To execute the tests, you can use the following commands:
 
      mvn -Dcucumber.options="src/test/resources/Features/TestFeature.feature" test
 
+## Running tests on different browsers
+* Change the browser type in config.properties file for running on different browsers.
+* Chrome(currently set)
+* Edge
+* Firefox
+* Safari
+
 ## Run specific scenario
    If you'd like to run a specific tag from the feature file, the command would be: 
 
      mvn -Dcucumber.options="--tags @SearchData" test
-
-## Technologies Used
-Framework Type - Cucumber & Data driven Framework
-Design pattern - Page Object Model Design pattern, external object repository and inbuilt custom annotations.
-Selenium WebDriver - For Browser Automation
-Cucumber - For organizing and running test cases.
-Maven - For dependency management, Project life cycle and build annotation.
-Java - Primary Programming Language.
-
-## Project Structure
-Eclipse - 
 
 ## Configuration
 
