@@ -81,7 +81,7 @@ public class BaseClass {
 	public void handlePopupByCloseIcon() {
 		try {
 			// Wait for the popup close icon to be visible
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 			WebElement closeIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(closeIconBtn));
 
 			// If the popup is present, click on the close icon
