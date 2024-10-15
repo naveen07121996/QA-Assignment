@@ -1,10 +1,14 @@
 package stepDefintions;
 
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+
+import commonMethods.BaseClass;
+
 import org.openqa.selenium.edge.EdgeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import utilities.ConfigReader;
@@ -18,6 +22,8 @@ public class Hooks {
 	// Load the config file
 	ConfigReader config = new ConfigReader();
 
+	// BaseClass baseClass;
+
 	@Before
 	public void setUp() {
 		String browser = config.getProperty("browser").trim();
@@ -26,7 +32,9 @@ public class Hooks {
 		switch (browser.toLowerCase()) {
 		case "chrome":
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+			driver = new ChromeDriver(options);
 			break;
 		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
@@ -44,11 +52,6 @@ public class Hooks {
 			throw new IllegalArgumentException("Unsupported Browser: " + browser);
 		}
 
-		// Set timeouts based on properties file
-		driver.manage().timeouts()
-				.implicitlyWait(Duration.ofSeconds(Long.parseLong(config.getProperty("implicit.wait").trim())));
-		driver.manage().timeouts()
-				.pageLoadTimeout(Duration.ofSeconds(Long.parseLong(config.getProperty("page.load.timeout").trim())));
 		driver.manage().window().maximize();
 
 		// Navigate to the app URL

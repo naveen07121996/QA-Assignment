@@ -9,9 +9,9 @@ import io.cucumber.junit.CucumberOptions;
 		glue = "stepDefintions",
 		features = "src/test/resources/Features",
 		dryRun = false,
-		//tags = "@SearchData",
+		//tags = "@TimestoreLogin",
 		monochrome = true,
-		plugin = {"pretty","html:target/test-reports.html"}
+		plugin = {"pretty","html:target/test-reports1.html"}
 		)
 public class RunnerClass {
 

@@ -4,16 +4,18 @@ Feature: Validating the features in the app
     Given User is on the home page
 
   @ValidateDate
-  Scenario: Validate today's date
+  Scenario: Validate today date
     When User navigates to the home screen
-    Then User should see today's date displayed on home screen
+    Then User should see today date displayed on home screen
     And User closes the browser
 
-  @SearchData
-  Scenario: Search data through Excel file
-    When User clicks the search bar and enters multiple data from the Excel file
-    And User should land on the specific search results page for each data
-    Then User closes the browser
+  @SearchDate
+  Scenario: Search data through invalid date range
+    When User clicks the search bar and searches for "Crimes" news
+    Then User should be navigated to the crimes news screen
+    And User selects a specific date range in the Date range dropdown and enters invalid date ranges
+    Then User should see an error message indicating an invalid date range
+    And User quits the browser
 
   @HeaderLink
   Scenario: Verifying the header section items
@@ -22,10 +24,10 @@ Feature: Validating the features in the app
     Then User should be navigated to the selected item screen
     And User quits the browser
 
-  @FooterLink
-  Scenario: Verify the footer links functionality
-    When User clicks on a footer link
-    And User should be navigated to the correct screen
+  @TimestoreLogin
+  Scenario: Login with multiple invalid credentials
+    When User enters the time store and click signin
+    When User enters invalid credentials and verify
     Then User quits the browser
 
   @TimeStoreAddtoCart

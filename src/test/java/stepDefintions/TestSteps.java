@@ -2,7 +2,7 @@ package stepDefintions;
 
 import java.io.IOException;
 import java.util.List;
-import org.junit.Assert;
+
 import org.openqa.selenium.WebDriver;
 import io.cucumber.java.en.*;
 import pages.TestPage;
@@ -20,6 +20,7 @@ public class TestSteps {
 	public void user_is_on_the_home_page() {
 		driver.get(configReader.getProperty("app.url"));
 		pages = new TestPage(driver);
+		pages.handlePopup();
 		pages.validateHomePage();
 	}
 
@@ -29,32 +30,35 @@ public class TestSteps {
 		pages.validateHomePage();
 	}
 
-	@Then("User should see today's date displayed on home screen")
-	public void user_should_see_today_s_date_displayed_on_home_screen() {
+	@Then("User should see today date displayed on home screen")
+	public void user_should_see_today_date_displayed_on_home_screen() {
 		pages.validateCurrentDate();
-	}
-
-	// Search data steps
-	@When("User clicks the search bar and enters multiple data from the Excel file")
-	public void user_clicks_the_search_bar_and_enters_multiple_data_from_the_excel_file() throws IOException {
-		List<String[]> data = ExcelReader.readExcelData("Sheet1");
-		// Loop through each row of data
-		for (String[] row : data) {
-			pages.handlePopup();
-			// Assuming you want to use the first column for searching
-			String searchItem = row[0];
-			pages.search(searchItem);
-			pages.validateSearchScrn(searchItem);
-		}
-	}
-
-	@Then("User should land on the specific search results page for each data")
-	public void user_should_land_on_the_specific_search_results_page_for_each_data() {
-		Assert.assertTrue("Not on the searched screen.", pages.isOnSearchedScreen());
 	}
 
 	@Then("User closes the browser")
 	public void user_closes_the_browser() {
+		pages.closeBrowser();
+	}
+
+	// search data invalid date
+	@When("User clicks the search bar and searches for {string} news")
+	public void user_clicks_the_search_bar_and_searches_for_news(String searchCrimes) {
+		pages.search(searchCrimes);
+	}
+
+	@Then("User should be navigated to the crimes news screen")
+	public void user_should_be_navigated_to_the_crimes_news_screen() {
+		pages.validateSearchScrn();
+	}
+
+	@Then("User selects a specific date range in the Date range dropdown and enters invalid date ranges")
+	public void user_selects_a_specific_date_range_in_the_date_range_dropdown_and_enters_invalid_date_ranges() {
+		pages.selectDates();
+	}
+
+	@Then("User should see an error message indicating an invalid date range")
+	public void user_should_see_an_error_message_indicating_an_invalid_date_range() {
+		pages.verifyErrorMsg();
 		pages.closeBrowser();
 	}
 
@@ -80,17 +84,17 @@ public class TestSteps {
 		pages.closeBrowser();
 	}
 
-	// Footer link steps
+	// Time Store login
 
-	@When("User clicks on a footer link")
-	public void user_clicks_on_a_footer_link() {
-		pages.selectTBrandStudio();
-
+	@When("User enters the time store and click signin")
+	public void user_enters_the_time_store_and_click_signin() {
+		pages.clickTimeStoreLink();
+		pages.clickSignIn();
 	}
 
-	@When("User should be navigated to the correct screen")
-	public void user_should_be_navigated_to_the_correct_screen() {
-		pages.verifyTBrandScreen();
+	@When("User enters invalid credentials and verify")
+	public void user_enters_invalid_credentials_and_verify() throws IOException {
+		pages.invalidLogin();
 	}
 
 	// TimeStore steps

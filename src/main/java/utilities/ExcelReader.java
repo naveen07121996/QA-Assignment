@@ -12,19 +12,13 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelReader {
 
-	static String filePath = "src/test/resources/testData/SearchData.xlsx";
+	static String filePath = "src/test/resources/testdata/Credentials.xlsx";
 
 	public static List<String[]> readExcelData(String sheetName) throws IOException {
 		FileInputStream fileInputStream = new FileInputStream(filePath);
-		// Workbook
 		Workbook workbook = new XSSFWorkbook(fileInputStream);
-		// Sheet
 		Sheet sheet = workbook.getSheet(sheetName);
 		List<String[]> data = new ArrayList<>();
-
-		if (sheet == null) {
-			throw new IllegalArgumentException("Sheet not found: " + sheetName);
-		}
 
 		DataFormatter dataFormatter = new DataFormatter();
 		for (Row row : sheet) {
@@ -39,5 +33,4 @@ public class ExcelReader {
 		fileInputStream.close();
 		return data;
 	}
-
 }
